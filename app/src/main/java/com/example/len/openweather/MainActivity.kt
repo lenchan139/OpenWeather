@@ -214,10 +214,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val wind = jsonObj["wind"] as JSONObject
                         val sysInfo = jsonObj["sys"] as JSONObject
                         //for print
-                        val locationName = jsonObj["name"] as String
+                        var locationName = jsonObj["name"] as String
                         val windSpeed = wind["speed"] as Double
                         val descrMain = (weatherDescr[0] as JSONObject)["description"]
                         val temp = weatherMain["temp"]
+                        if(locationName.isEmpty()){
+                            locationName = "unknown"
+                        }
                         activity.tfCountry.text = locationName
                         activity.fab.setOnClickListener(View.OnClickListener {
                             val bookmarkSQLiteHelper = BookmarkSQLiteHelper(activity)
