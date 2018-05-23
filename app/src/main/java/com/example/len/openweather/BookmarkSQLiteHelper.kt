@@ -27,6 +27,10 @@ class BookmarkSQLiteHelper(context: Context): SQLiteOpenHelper(context, "bookmar
         values.put("long", long)
         writableDatabase.insert(tableName, null, values)
     }
+    fun delBookmark(id: Int):Boolean{
+        writableDatabase.delete(tableName,"id="+id,null)
+        return true
+    }
     fun getBookmarks(): ArrayList<Bookmark> {
         val cursor = readableDatabase.query(tableName, arrayOf("id", "name", "lat", "long "), null, null, null, null, null)
         val members = ArrayList<Bookmark>()
